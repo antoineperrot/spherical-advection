@@ -82,7 +82,7 @@ class Model:
             last_saved_time = t;
 
         #could be usefull :
-        self.x = x
-        self.t = t
+#        self.x = x
+#        self.t = t
         
         return trajectory
