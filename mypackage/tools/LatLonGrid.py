@@ -166,11 +166,11 @@ class LatLonGrid(object):
 
     def BilinearSphericalInterpolation(self, backtrack_points, state):
         PHId, THETAd = backtrack_points
-    
-        south_pole_mean = state[:,[0]]*0 + state[:,0].mean()
-        north_pole_mean = state[:,[-1]]*0 + state[:,-1].mean()
+        
+        south_pole_mean = state[:,:,[0]]*0 + state[:,:,[0]].mean(axis=1)[:,np.newaxis]
+        north_pole_mean = state[:,:,[-1]]*0 + state[:,:,[-1]].mean(axis=1)[:,np.newaxis]
 
-        poles_extended_state = np.hstack([south_pole_mean, state, north_pole_mean])
+        poles_extended_state = np.dstack([south_pole_mean, state, north_pole_mean])
     
      # bilinear interpolation on "rectangles" defined by the lat/lon grid.
         PHI_ = PHId.astype(int)
@@ -179,10 +179,10 @@ class LatLonGrid(object):
         THETA_ = THETAd.astype(int)
         THETAp_ = (THETAd+1).astype(int)
     
-        interpolation = (1-THETAd%1)         *(  (1-PHId%1) * poles_extended_state[PHI_      , THETA_        ]
-                                           + (PHId % 1) * poles_extended_state[PHIp_ , THETA_        ] ) \
-                +  (THETAd % 1)          *(  (1-PHId%1) * poles_extended_state[PHI_      , THETAp_  ]
-                                           + (PHId % 1) * poles_extended_state[PHIp_ , THETAp_  ] )
+        interpolation = (1-THETAd%1)         *(  (1-PHId%1) * poles_extended_state[:,PHI_      , THETA_        ]
+                                           + (PHId % 1) * poles_extended_state[:,PHIp_ , THETA_        ] ) \
+                +  (THETAd % 1)          *(  (1-PHId%1) * poles_extended_state[:,PHI_      , THETAp_  ]
+                                           + (PHId % 1) * poles_extended_state[:,PHIp_ , THETAp_  ] )
     
         return interpolation
 
