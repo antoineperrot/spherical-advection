@@ -35,7 +35,7 @@ This method is numerically very expensive and therefore limited to very low-reso
 
 Then, a sanity check indicates that the random fields generated are not perfectly isotropic (longer meridional length-scale)
 
-## [Notebook 4](https://github.com/antoineperrot/spherical-advection/blob/master/3.%20Isotropic%20GRF%20on%20S%C2%B2%20-%20using%20sqrt%20B.ipynb): Generating isotropic GRF on the sphere with spherical harmonics
+## [Notebook 4](https://github.com/antoineperrot/spherical-advection/blob/master/4.%20Isotropic%20GRF%20on%20S%C2%B2%20-%20using%20spherical%20harmonics.ipynb): Generating isotropic GRF on the sphere with spherical harmonics
 
 In this notebook we use a lemma that relies on spherical harmonics to generate isotropic GRF at high-resolution.
 <p align="center">
